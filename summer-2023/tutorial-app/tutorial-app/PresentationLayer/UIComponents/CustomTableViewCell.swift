@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class CustomTableViewCell: UITableViewCell {
     
     let iconView: UIImageView = UIImageView()
     let label: UILabel = UILabel()
     let sublabel: UILabel = UILabel()
+    
+    var ImagePath: String = ""
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,7 +39,6 @@ final class CustomTableViewCell: UITableViewCell {
         iconView.layer.cornerRadius = 12
         iconView.clipsToBounds = true
         iconView.layer.masksToBounds = true
-        iconView.backgroundColor = .black
         
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -60,6 +62,10 @@ final class CustomTableViewCell: UITableViewCell {
         
         sublabel.font = UIFont.systemFont(ofSize: 10, weight: .regular)
         sublabel.textColor = .cyan
+    }
+    
+    func configureImagePath(posterPath: String) {
+        iconView.kf.setImage(with: URL(string: posterPath))
     }
 }
 

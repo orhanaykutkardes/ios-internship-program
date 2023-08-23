@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ViewController: UIViewController {
     
     let customTableView: UITableView = UITableView()
+    
+    private let networkManager: NetworkManager = NetworkManager()
+    fileprivate(set) var popularMovies: [MovieResult]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +21,24 @@ final class ViewController: UIViewController {
         
         prepareUI()
         initTableView()
+        loadPopularMovies()
+    }
+    
+    func loadPopularMovies() {
+        networkManager.fetchPopularMovies { [weak self] result in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(let movieResponse):
+                if let popularMovies = movieResponse.results {
+                    strongSelf.popularMovies = popularMovies
+                    debugPrint(popularMovies)
+                    //strongSelf.delegate?.didUpdatePopularMovies()
+                    strongSelf.customTableView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     private func prepareUI() {
@@ -41,14 +63,16 @@ final class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return popularMovies?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print(indexPath.row)
         let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath) as? CustomTableViewCell
-        cell?.label.text = String(indexPath.row)
-        cell?.sublabel.text = "created sublabel for index \(indexPath.row)"
+        cell?.label.text = popularMovies?[indexPath.row].title
+        cell?.sublabel.text = popularMovies?[indexPath.row].releaseDate
+        let str = popularMovies?[indexPath.row].posterPath ?? ""
+        cell?.configureImagePath(posterPath: "https://image.tmdb.org/t/p/w500" + str)
         return cell ?? UITableViewCell()
     }
     

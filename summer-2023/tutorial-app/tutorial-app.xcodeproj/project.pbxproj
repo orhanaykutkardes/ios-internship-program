@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA1B0E412A96268E0051DC53 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = BA1B0E402A96268E0051DC53 /* Moya */; };
+		BA1B0E432A9626F10051DC53 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1B0E422A9626F10051DC53 /* API.swift */; };
+		BA1B0E452A9627380051DC53 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1B0E442A9627380051DC53 /* NetworkManager.swift */; };
+		BA1B0E492A9627D10051DC53 /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1B0E482A9627D10051DC53 /* MovieResponse.swift */; };
+		BA1B0E4C2A962E5D0051DC53 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BA1B0E4B2A962E5D0051DC53 /* Kingfisher */; };
 		BA1BD2D82A8520960049A26B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1BD2D72A8520960049A26B /* AppDelegate.swift */; };
 		BA1BD2DA2A8520960049A26B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1BD2D92A8520960049A26B /* SceneDelegate.swift */; };
 		BA1BD2DC2A8520960049A26B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1BD2DB2A8520960049A26B /* ViewController.swift */; };
@@ -16,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA1B0E422A9626F10051DC53 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		BA1B0E442A9627380051DC53 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BA1B0E482A9627D10051DC53 /* MovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponse.swift; sourceTree = "<group>"; };
 		BA1BD2D42A8520960049A26B /* tutorial-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tutorial-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA1BD2D72A8520960049A26B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA1BD2D92A8520960049A26B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,12 +39,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA1B0E4C2A962E5D0051DC53 /* Kingfisher in Frameworks */,
+				BA1B0E412A96268E0051DC53 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA1B0E3C2A9624A20051DC53 /* Network Layer */ = {
+			isa = PBXGroup;
+			children = (
+				BA1B0E422A9626F10051DC53 /* API.swift */,
+				BA1B0E442A9627380051DC53 /* NetworkManager.swift */,
+			);
+			path = "Network Layer";
+			sourceTree = "<group>";
+		};
+		BA1B0E472A9627C10051DC53 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BA1B0E482A9627D10051DC53 /* MovieResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BA1BD2CB2A8520960049A26B = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +85,7 @@
 			children = (
 				BA1BD2E52A8520970049A26B /* Info.plist */,
 				BA1BD2ED2A8521C40049A26B /* ApplicationLayer */,
+				BA1B0E3C2A9624A20051DC53 /* Network Layer */,
 				BA1BD2EE2A8521CB0049A26B /* PresentationLayer */,
 				BA1BD2F12A8521F90049A26B /* Supporting Files */,
 			);
@@ -76,6 +104,7 @@
 		BA1BD2EE2A8521CB0049A26B /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				BA1B0E472A9627C10051DC53 /* Model */,
 				BA1BD2F02A8521EB0049A26B /* Scenes */,
 				BA1BD2EF2A8521DE0049A26B /* UIComponents */,
 			);
@@ -123,6 +152,10 @@
 			dependencies = (
 			);
 			name = "tutorial-app";
+			packageProductDependencies = (
+				BA1B0E402A96268E0051DC53 /* Moya */,
+				BA1B0E4B2A962E5D0051DC53 /* Kingfisher */,
+			);
 			productName = "tutorial-app";
 			productReference = BA1BD2D42A8520960049A26B /* tutorial-app.app */;
 			productType = "com.apple.product-type.application";
@@ -151,6 +184,10 @@
 				Base,
 			);
 			mainGroup = BA1BD2CB2A8520960049A26B;
+			packageReferences = (
+				BA1B0E3F2A96268E0051DC53 /* XCRemoteSwiftPackageReference "Moya" */,
+				BA1B0E4A2A962E5D0051DC53 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = BA1BD2D52A8520960049A26B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -177,10 +214,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA1B0E492A9627D10051DC53 /* MovieResponse.swift in Sources */,
+				BA1B0E452A9627380051DC53 /* NetworkManager.swift in Sources */,
 				BA1BD2DC2A8520960049A26B /* ViewController.swift in Sources */,
 				BA1BD2D82A8520960049A26B /* AppDelegate.swift in Sources */,
 				BA1BD2EC2A8521B50049A26B /* CustomTableViewCell.swift in Sources */,
 				BA1BD2DA2A8520960049A26B /* SceneDelegate.swift in Sources */,
+				BA1B0E432A9626F10051DC53 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +428,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BA1B0E3F2A96268E0051DC53 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.0;
+			};
+		};
+		BA1B0E4A2A962E5D0051DC53 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BA1B0E402A96268E0051DC53 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA1B0E3F2A96268E0051DC53 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		BA1B0E4B2A962E5D0051DC53 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA1B0E4A2A962E5D0051DC53 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BA1BD2CC2A8520960049A26B /* Project object */;
 }
