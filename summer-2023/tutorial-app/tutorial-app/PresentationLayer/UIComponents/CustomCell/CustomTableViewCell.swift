@@ -10,11 +10,17 @@ import Kingfisher
 
 final class CustomTableViewCell: UITableViewCell {
     
-    let iconView: UIImageView = UIImageView()
-    let label: UILabel = UILabel()
-    let sublabel: UILabel = UILabel()
+    private let iconView: UIImageView = UIImageView()
+    private let label: UILabel = UILabel()
+    private let sublabel: UILabel = UILabel()
+    private var ImagePath: String = "https://image.tmdb.org/t/p/w500"
     
-    var ImagePath: String = ""
+    var viewModel: CustomCellViewModel? {
+        didSet {
+            guard let data = viewModel else { return }
+            configureCell(data: data)
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -64,8 +70,9 @@ final class CustomTableViewCell: UITableViewCell {
         sublabel.textColor = .cyan
     }
     
-    func configureImagePath(posterPath: String) {
-        iconView.kf.setImage(with: URL(string: posterPath))
+    private func configureCell(data: CustomCellViewModel) {
+        label.text = data.title
+        sublabel.text = data.subtitle
+        iconView.kf.setImage(with: URL(string: ImagePath + data.posterPath))
     }
 }
-

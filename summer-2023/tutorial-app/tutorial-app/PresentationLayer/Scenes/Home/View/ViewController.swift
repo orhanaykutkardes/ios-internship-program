@@ -12,32 +12,27 @@ final class ViewController: UIViewController {
     
     let customTableView: UITableView = UITableView()
     
-    private let networkManager: NetworkManager = NetworkManager()
-    fileprivate(set) var popularMovies: [MovieResult]? = []
+    var viewModel: HomeViewModel = HomeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        title = "Popular Movies"
+        
         prepareUI()
         initTableView()
         loadPopularMovies()
+        viewModelBindings()
     }
     
     func loadPopularMovies() {
-        networkManager.fetchPopularMovies { [weak self] result in
-            guard let strongSelf = self else { return }
-            switch result {
-            case .success(let movieResponse):
-                if let popularMovies = movieResponse.results {
-                    strongSelf.popularMovies = popularMovies
-                    debugPrint(popularMovies)
-                    //strongSelf.delegate?.didUpdatePopularMovies()
-                    strongSelf.customTableView.reloadData()
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        viewModel.loadPopularMoview()
+    }
+    
+    private func viewModelBindings() {
+        viewModel.reloadTableViewClosure = { [weak self] in
+            self?.customTableView.reloadData()
         }
     }
     
@@ -63,19 +58,33 @@ final class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return popularMovies?.count ?? 0
+        return viewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print(indexPath.row)
         let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath) as? CustomTableViewCell
-        cell?.label.text = popularMovies?[indexPath.row].title
-        cell?.sublabel.text = popularMovies?[indexPath.row].releaseDate
-        let str = popularMovies?[indexPath.row].posterPath ?? ""
-        cell?.configureImagePath(posterPath: "https://image.tmdb.org/t/p/w500" + str)
+        
+        cell?.viewModel = CustomCellViewModel(title: viewModel.movie(at: indexPath.row)?.title ?? "",
+                                              subtitle: viewModel.movie(at: indexPath.row)?.releaseDate ?? "",
+                                              posterPath: viewModel.movie(at: indexPath.row)?.posterPath ?? "")
         return cell ?? UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nextViewController = MovieDetailViewController()
+        nextViewController.indexPathRow = indexPath.row
+        nextViewController.navigationTitle = viewModel.movie(at: indexPath.row)?.title ?? ""
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 150
+        } else if indexPath.row == 1 {
+            return 400
+        } else {
+            return 50
+        }
+    }
 }
-
