@@ -73,8 +73,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextViewController = MovieDetailViewController()
-        nextViewController.indexPathRow = indexPath.row
         nextViewController.navigationTitle = viewModel.movie(at: indexPath.row)?.title ?? ""
+        nextViewController.movieID = viewModel.movie(at: indexPath.row)?.id ?? 0
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     

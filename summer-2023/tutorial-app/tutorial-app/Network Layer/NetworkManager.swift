@@ -12,8 +12,7 @@ protocol Networkable {
     var provider: MoyaProvider<API> { get }
 
     func fetchPopularMovies(completion: @escaping (Result<MovieResponse, Error>) -> ())
-    //func fetchMovieDetail(movieId: String, completion: @escaping (Result<MovieDetailResponse, Error>) -> ())
-    //func fetchSearchResult(query: String, completion: @escaping (Result<SearchResponse, Error>) -> ())
+    func fetchMovieDetail(movieId: String, completion: @escaping (Result<MovieDetailResponse, Error>) -> ())
 }
 
 class NetworkManager: Networkable {
@@ -23,15 +22,9 @@ class NetworkManager: Networkable {
         request(target: .popular, completion: completion)
     }
     
-    /*
     func fetchMovieDetail(movieId: String, completion: @escaping (Result<MovieDetailResponse, Error>) -> ()) {
         request(target: .movie(movieId: movieId), completion: completion)
     }
-    
-    func fetchSearchResult(query: String, completion: @escaping (Result<SearchResponse, Error>) -> ()) {
-        request(target: .search(query: query), completion: completion)
-    }
-     */
 }
 
 private extension NetworkManager {

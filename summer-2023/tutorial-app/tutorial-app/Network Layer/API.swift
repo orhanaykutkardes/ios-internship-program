@@ -11,6 +11,7 @@ import Moya
 
 enum API {
     case popular
+    case movie(movieId: String)
 }
 
 extension API: TargetType {
@@ -20,7 +21,13 @@ extension API: TargetType {
     }
     
     var path: String {
-        return "movie/popular"    }
+        switch self {
+        case .popular:
+            return "movie/popular"
+        case .movie(let movieId):
+            return "movie/\(movieId)"
+        }
+    }
     
     var method: Moya.Method {
         return .get
