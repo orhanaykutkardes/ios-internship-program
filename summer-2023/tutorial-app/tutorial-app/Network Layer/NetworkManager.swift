@@ -11,14 +11,14 @@ import Moya
 protocol Networkable {
     var provider: MoyaProvider<API> { get }
 
-    func fetchPopularMovies(completion: @escaping (Result<MovieResponse, Error>) -> ())
+    func fetchPopularMovies(completion: @escaping (Result<CleanHomeViewModel.MoviesResponse, Error>) -> ())
     func fetchMovieDetail(movieId: String, completion: @escaping (Result<MovieDetailResponse, Error>) -> ())
 }
 
 class NetworkManager: Networkable {
     var provider = MoyaProvider<API>(plugins: [NetworkLoggerPlugin()])
 
-    func fetchPopularMovies(completion: @escaping (Result<MovieResponse, Error>) -> ()) {
+    func fetchPopularMovies(completion: @escaping (Result<CleanHomeViewModel.MoviesResponse, Error>) -> ()) {
         request(target: .popular, completion: completion)
     }
     

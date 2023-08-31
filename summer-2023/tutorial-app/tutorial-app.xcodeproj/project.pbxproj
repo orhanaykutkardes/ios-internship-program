@@ -24,6 +24,11 @@
 		BA60CA772AA0C894002B4320 /* CustomHeaderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA60CA762AA0C894002B4320 /* CustomHeaderCellViewModel.swift */; };
 		BA60CA7A2AA0CC0E002B4320 /* CustomDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA60CA792AA0CC0E002B4320 /* CustomDetailCell.swift */; };
 		BA60CA7C2AA0CC15002B4320 /* CustomDetailCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA60CA7B2AA0CC15002B4320 /* CustomDetailCellViewModel.swift */; };
+		BA60CA812AA0DAEE002B4320 /* CleanHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA60CA802AA0DAEE002B4320 /* CleanHomeViewModel.swift */; };
+		BA60CA852AA0DC5A002B4320 /* CleanHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA60CA842AA0DC5A002B4320 /* CleanHomeViewController.swift */; };
+		BA60CA882AA0DD0D002B4320 /* CleanHomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA60CA872AA0DD0D002B4320 /* CleanHomeInteractor.swift */; };
+		BA60CA8B2AA0DD8C002B4320 /* CleanHomeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA60CA8A2AA0DD8C002B4320 /* CleanHomeWorker.swift */; };
+		BA60CA8E2AA0E100002B4320 /* CleanPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA60CA8D2AA0E100002B4320 /* CleanPresenter.swift */; };
 		BADA7E4C2A98C9240099070E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA7E4B2A98C9240099070E /* HomeViewModel.swift */; };
 		BADA7E502A98CC7E0099070E /* CustomCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA7E4F2A98CC7E0099070E /* CustomCellViewModel.swift */; };
 		BADA7E532A98D63B0099070E /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA7E522A98D63B0099070E /* MovieDetailViewController.swift */; };
@@ -47,6 +52,11 @@
 		BA60CA762AA0C894002B4320 /* CustomHeaderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderCellViewModel.swift; sourceTree = "<group>"; };
 		BA60CA792AA0CC0E002B4320 /* CustomDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDetailCell.swift; sourceTree = "<group>"; };
 		BA60CA7B2AA0CC15002B4320 /* CustomDetailCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDetailCellViewModel.swift; sourceTree = "<group>"; };
+		BA60CA802AA0DAEE002B4320 /* CleanHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanHomeViewModel.swift; sourceTree = "<group>"; };
+		BA60CA842AA0DC5A002B4320 /* CleanHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanHomeViewController.swift; sourceTree = "<group>"; };
+		BA60CA872AA0DD0D002B4320 /* CleanHomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanHomeInteractor.swift; sourceTree = "<group>"; };
+		BA60CA8A2AA0DD8C002B4320 /* CleanHomeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanHomeWorker.swift; sourceTree = "<group>"; };
+		BA60CA8D2AA0E100002B4320 /* CleanPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanPresenter.swift; sourceTree = "<group>"; };
 		BADA7E4B2A98C9240099070E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		BADA7E4F2A98CC7E0099070E /* CustomCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellViewModel.swift; sourceTree = "<group>"; };
 		BADA7E522A98D63B0099070E /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
@@ -192,9 +202,62 @@
 			path = CustomDetailCell;
 			sourceTree = "<group>";
 		};
+		BA60CA7D2AA0DABA002B4320 /* CleanFolder */ = {
+			isa = PBXGroup;
+			children = (
+				BA60CA8C2AA0E0E8002B4320 /* CleanPresenter */,
+				BA60CA892AA0DD7A002B4320 /* CleanWorker */,
+				BA60CA862AA0DCF7002B4320 /* CleanInteractor */,
+				BA60CA832AA0DC42002B4320 /* CleanViewController */,
+				BA60CA7F2AA0DADB002B4320 /* CleanHomeViewModel */,
+			);
+			path = CleanFolder;
+			sourceTree = "<group>";
+		};
+		BA60CA7F2AA0DADB002B4320 /* CleanHomeViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BA60CA802AA0DAEE002B4320 /* CleanHomeViewModel.swift */,
+			);
+			path = CleanHomeViewModel;
+			sourceTree = "<group>";
+		};
+		BA60CA832AA0DC42002B4320 /* CleanViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BA60CA842AA0DC5A002B4320 /* CleanHomeViewController.swift */,
+			);
+			path = CleanViewController;
+			sourceTree = "<group>";
+		};
+		BA60CA862AA0DCF7002B4320 /* CleanInteractor */ = {
+			isa = PBXGroup;
+			children = (
+				BA60CA872AA0DD0D002B4320 /* CleanHomeInteractor.swift */,
+			);
+			path = CleanInteractor;
+			sourceTree = "<group>";
+		};
+		BA60CA892AA0DD7A002B4320 /* CleanWorker */ = {
+			isa = PBXGroup;
+			children = (
+				BA60CA8A2AA0DD8C002B4320 /* CleanHomeWorker.swift */,
+			);
+			path = CleanWorker;
+			sourceTree = "<group>";
+		};
+		BA60CA8C2AA0E0E8002B4320 /* CleanPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				BA60CA8D2AA0E100002B4320 /* CleanPresenter.swift */,
+			);
+			path = CleanPresenter;
+			sourceTree = "<group>";
+		};
 		BADA7E482A98C9000099070E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				BA60CA7D2AA0DABA002B4320 /* CleanFolder */,
 				BADA7E4A2A98C9130099070E /* View */,
 				BADA7E492A98C90C0099070E /* ViewModel */,
 			);
@@ -315,16 +378,21 @@
 			files = (
 				BA60CA772AA0C894002B4320 /* CustomHeaderCellViewModel.swift in Sources */,
 				BA1B0E492A9627D10051DC53 /* MovieResponse.swift in Sources */,
+				BA60CA812AA0DAEE002B4320 /* CleanHomeViewModel.swift in Sources */,
 				BA60CA7A2AA0CC0E002B4320 /* CustomDetailCell.swift in Sources */,
+				BA60CA8E2AA0E100002B4320 /* CleanPresenter.swift in Sources */,
 				BA1B0E452A9627380051DC53 /* NetworkManager.swift in Sources */,
 				BA60CA7C2AA0CC15002B4320 /* CustomDetailCellViewModel.swift in Sources */,
+				BA60CA882AA0DD0D002B4320 /* CleanHomeInteractor.swift in Sources */,
 				BA60CA6E2AA0C5AB002B4320 /* MovieDetailResponse.swift in Sources */,
 				BA1BD2DC2A8520960049A26B /* ViewController.swift in Sources */,
 				BADA7E4C2A98C9240099070E /* HomeViewModel.swift in Sources */,
+				BA60CA8B2AA0DD8C002B4320 /* CleanHomeWorker.swift in Sources */,
 				BA1BD2D82A8520960049A26B /* AppDelegate.swift in Sources */,
 				BA1BD2EC2A8521B50049A26B /* CustomTableViewCell.swift in Sources */,
 				BADA7E532A98D63B0099070E /* MovieDetailViewController.swift in Sources */,
 				BA60CA722AA0C632002B4320 /* MovieDetailViewModel.swift in Sources */,
+				BA60CA852AA0DC5A002B4320 /* CleanHomeViewController.swift in Sources */,
 				BA1BD2DA2A8520960049A26B /* SceneDelegate.swift in Sources */,
 				BADA7E502A98CC7E0099070E /* CustomCellViewModel.swift in Sources */,
 				BA1B0E432A9626F10051DC53 /* API.swift in Sources */,

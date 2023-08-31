@@ -14,6 +14,7 @@ class HomeViewModel {
     
     var reloadTableViewClosure: ( () -> Void )?
     
+    /*
     func loadPopularMoview() {
         networkManager.fetchPopularMovies { [weak self] result in
             guard let strongSelf = self else { return }
@@ -29,6 +30,7 @@ class HomeViewModel {
             }
         }
     }
+     */
     
     func numberOfRows() -> Int {
         return popularMovies?.count ?? 0

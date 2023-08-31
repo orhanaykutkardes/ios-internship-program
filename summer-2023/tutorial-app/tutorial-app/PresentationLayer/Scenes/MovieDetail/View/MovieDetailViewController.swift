@@ -82,7 +82,6 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return 300
         } else {
             return 300
-        
         }
     }
 }

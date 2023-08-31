@@ -1,39 +1,57 @@
 //
-//  ViewController.swift
+//  CleanHomeViewController.swift
 //  tutorial-app
 //
-//  Created by Yapı Kredi Teknoloji on 10.08.2023.
+//  Created by Yapı Kredi Teknoloji A.Ş. on 31.08.2023.
 //
 
 import UIKit
-import Kingfisher
 
-final class ViewController: UIViewController {
+protocol CleanDisplayLogic: AnyObject {
+    func fetchedMovieResult(response: [CleanHomeViewModel.MoviesViewModel])
+}
+
+final class CleanHomeViewController: UIViewController, CleanDisplayLogic {
     
     let customTableView: UITableView = UITableView()
     
-    var viewModel: HomeViewModel = HomeViewModel()
+    var interactor: HomeBusinessLogic?
+    
+    var moviesDataModel = [CleanHomeViewModel.MoviesViewModel]()
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+    {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    private func setup()
+    {
+        let viewController = self
+        let interactor = CleanHomeInteractor()
+        let presenter = CleanHomePresenter()
+        //let router = Clea()
+        viewController.interactor = interactor
+        //viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        //router.viewController = viewController
+        //router.dataStore = interactor
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
-        
-        title = "Popular Movies"
-        
         prepareUI()
         initTableView()
-        loadPopularMovies()
-        viewModelBindings()
-    }
-    
-    func loadPopularMovies() {
-        //viewModel.loadPopularMoview()
-    }
-    
-    private func viewModelBindings() {
-        viewModel.reloadTableViewClosure = { [weak self] in
-            self?.customTableView.reloadData()
-        }
+        interactor?.fetchMovies()
     }
     
     private func prepareUI() {
@@ -52,39 +70,40 @@ final class ViewController: UIViewController {
         customTableView.dataSource = self
         customTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "DefaultCell")
     }
+    
+    func fetchedMovieResult(response: [CleanHomeViewModel.MoviesViewModel]) {
+        moviesDataModel = response
+        customTableView.reloadData()
+    }
 
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+extension CleanHomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows()
+        return moviesDataModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(indexPath.row)
         let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath) as? CustomTableViewCell
         
-        cell?.viewModel = CustomCellViewModel(title: viewModel.movie(at: indexPath.row)?.title ?? "",
-                                              subtitle: viewModel.movie(at: indexPath.row)?.releaseDate ?? "",
-                                              posterPath: viewModel.movie(at: indexPath.row)?.posterPath ?? "")
+        cell?.viewModel = CustomCellViewModel(title: moviesDataModel[indexPath.row].title ?? "",
+                                              subtitle:  moviesDataModel[indexPath.row].subtitle ?? "",
+                                              posterPath:  moviesDataModel[indexPath.row].title ?? "")
         return cell ?? UITableViewCell()
+
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        /*
         let nextViewController = MovieDetailViewController()
         nextViewController.navigationTitle = viewModel.movie(at: indexPath.row)?.title ?? ""
         nextViewController.movieID = viewModel.movie(at: indexPath.row)?.id ?? 0
         self.navigationController?.pushViewController(nextViewController, animated: true)
+         */
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 150
-        } else if indexPath.row == 1 {
-            return 400
-        } else {
-            return 50
-        }
+        return 50
     }
 }
