@@ -16,6 +16,7 @@ final class CleanHomeViewController: UIViewController, CleanDisplayLogic {
     let customTableView: UITableView = UITableView()
     
     var interactor: HomeBusinessLogic?
+    var router: (MoviesRoutingLogic & MovieDataPassing)?
     
     var moviesDataModel = [CleanHomeViewModel.MoviesViewModel]()
     
@@ -36,13 +37,13 @@ final class CleanHomeViewController: UIViewController, CleanDisplayLogic {
         let viewController = self
         let interactor = CleanHomeInteractor()
         let presenter = CleanHomePresenter()
-        //let router = Clea()
+        let router = CleanHomeRouter()
         viewController.interactor = interactor
-        //viewController.router = router
+        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
-        //router.viewController = viewController
-        //router.dataStore = interactor
+        router.viewController = viewController
+        router.dataStore = interactor
     }
     
     override func viewDidLoad() {
@@ -87,20 +88,15 @@ extension CleanHomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath) as? CustomTableViewCell
         
-        cell?.viewModel = CustomCellViewModel(title: moviesDataModel[indexPath.row].title ?? "",
-                                              subtitle:  moviesDataModel[indexPath.row].subtitle ?? "",
-                                              posterPath:  moviesDataModel[indexPath.row].title ?? "")
+        cell?.viewModel = CustomCellViewModel(title: moviesDataModel[indexPath.row].title,
+                                              subtitle:  moviesDataModel[indexPath.row].subtitle,
+                                              posterPath:  moviesDataModel[indexPath.row].title)
         return cell ?? UITableViewCell()
 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*
-        let nextViewController = MovieDetailViewController()
-        nextViewController.navigationTitle = viewModel.movie(at: indexPath.row)?.title ?? ""
-        nextViewController.movieID = viewModel.movie(at: indexPath.row)?.id ?? 0
-        self.navigationController?.pushViewController(nextViewController, animated: true)
-         */
+        router?.routeToMovieDetail(index: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
